@@ -4,23 +4,32 @@
 
 
 {% block content %}
-{{msg}}
-{% if number > 9 %}
-    <p>This number larger than 9</p>
-{% elif number == 9 %}
-    <p>This number exacly 9</p>
-{% else %}
-    <p>This number small than 9</p>
-{% endif %}
-<h1>This is full of Project</h1>
 
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-
-<ul>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Tags</th>
+        <th>Vote total</th>
+        <th>Created</th>
+        <th>Details</th>
+    </tr>
     {% for i in project_list %}
-        <li>Name: <a href="project/{{i.id}}">{{i.title}}</a></li>
-        <li>Description: {{i.description}}</li>
+    <tr>
+        <td>{{i.title}}</td>
+        <td>
+            {% for tag in i.tags.all %}
+                <span style="border:1px solid grey">{{tag}}</span>
+            {% endfor %}
+        </td>
+        <td>{{i.vote_total}}</td>
+        <td>{{i.created}}</td>
+        <td><a href="project/{{i.id}}">View</a></td>
+        <!-- <td><a href="project/{{i.id}}">Update</a></td>
+        <td><a href="project/{{i.id}}">Delete</a></td> -->
+    </tr>
+
     {% endfor %}
-</ul>
+</table>
+
 
 {% endblock content %}
