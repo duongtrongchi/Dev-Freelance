@@ -11,6 +11,7 @@ class Project(models.Model):
     )
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
+    feature_image = models.ImageField(null=True, blank=True, default='default.jpeg')
     tags = models.ManyToManyField('Tag', blank=True)
     vote_total = models.IntegerField(default=0, null=True, blank=True)
     ratio_total = models.IntegerField(default=0, null=True, blank=True)
