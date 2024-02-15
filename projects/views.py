@@ -9,7 +9,7 @@ def list_all_project(request):
 
 def get_project(request, pk):
     projectObj = Project.objects.get(id=pk)
-    return render(request, 'projects/project.html', {'projectObj':projectObj})
+    return render(request, 'projects/single-project.html', {'projectObj':projectObj})
 
 
 def create_project(request):
@@ -23,7 +23,7 @@ def create_project(request):
             return redirect('list_all_job')
 
     context = {'form': form}
-    return render(request, 'projects/form_project.html', context=context)
+    return render(request, 'projects/form-template.html', context=context)
 
 
 def update_project(request, pk):
@@ -37,7 +37,7 @@ def update_project(request, pk):
             return redirect('list_all_job')
 
     context = {'form': form}
-    return render(request, 'projects/form_project.html', context=context)
+    return render(request, 'projects/form-template.html', context=context)
 
 
 def delete_project(request, pk):
