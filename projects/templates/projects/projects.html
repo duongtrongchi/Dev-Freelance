@@ -1,8 +1,4 @@
 {% extends 'main.html' %}
-
-
-
-
 {% block content %}
 
 <table>
@@ -24,8 +20,8 @@
         <td>{{i.vote_total}}</td>
         <td>{{i.created}}</td>
         <td><a href="project/{{i.id}}">View</a></td>
-        <!-- <td><a href="project/{{i.id}}">Update</a></td>
-        <td><a href="project/{{i.id}}">Delete</a></td> -->
+        <td><a href="{% url 'update_a_project' i.id %}">Update</a></td>
+        <td><a href="{% url 'delete-project' i.id %}">Delete</a></td>
     </tr>
 
     {% endfor %}
