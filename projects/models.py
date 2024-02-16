@@ -1,4 +1,5 @@
 from django.db import models
+from users.models import Profile
 import uuid
 
 
@@ -10,6 +11,7 @@ class Project(models.Model):
         editable=False
     )
     title = models.CharField(max_length=255)
+    owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True)
     feature_image = models.ImageField(null=True, blank=True, default='default.jpeg')
     tags = models.ManyToManyField('Tag', blank=True)
