@@ -16,9 +16,13 @@
           <li class="header__menuItem"><a href="{% url 'profiles' %}">Developers</a></li>
           <li class="header__menuItem"><a href="{% url 'list_all_job' %}">Projects</a></li>
           <li class="header__menuItem"><a href="">Inbox</a></li>
+          {% if request.user.is_authenticated %}
           <li class="header__menuItem"><a href="{% url 'create_project' %}">Add Project</a></li>
           <li class="header__menuItem"><a href="">My Account</a></li>
-          <li class="header__menuItem"><a href="" class="btn btn--sub">Login/Sign Up</a></li>
+          <li class="header__menuItem"><a href="{% url 'logout-page' %}" class="btn btn--sub">Logout</a></li>
+          {% else %}
+          <li class="header__menuItem"><a href="{% url 'login-page' %}" class="btn btn--sub">Login/Sign Up</a></li>
+          {% endif %}
         </ul>
       </nav>
     </div>

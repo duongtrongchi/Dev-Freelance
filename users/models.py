@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 import uuid
 
 class Profile(models.Model):
@@ -43,3 +44,15 @@ class Skill(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+
+def createProfile(sender, instance, created, **kwargs):
+    if created:
+        user = instance
+        profile = Profile.objects.create(
+            user=user,
+            name=user.first_name
+        )
+        
+
+post_save.connect(createProfile, sender=User)
