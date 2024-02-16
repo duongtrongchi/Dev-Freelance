@@ -17,14 +17,15 @@ def login_user(request):
         try:
             user = User.objects.get(username=username)
         except:
-            messages.error(request,'User does not exit!')
+            messages.error(request,'Tài khoản không tồn tại!')
 
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(request, 'Đăng nhập thành công!')
             return redirect('profiles')
         else:
-            messages.error(request, 'Username or password in correct!')
+            messages.error(request, 'Username or password không chính xác!')
 
     return render(request, 'users/login_register.html')
 
