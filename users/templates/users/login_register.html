@@ -2,6 +2,49 @@
 {% load static %}
 
 {% block content %}
+
+
+{% if page == 'register' %}
+<div class="auth">
+  <div class="card">
+    <div class="auth__header text-center">
+      <a href="{% url 'register-page' %}">
+        <img src="{% static 'images/login.png' %}" alt="icon" />
+      </a>
+      <h3>Account SignUp</h3>
+      <p>Create a new developer account</p>
+    </div>
+
+    <form action="{% url 'register-page' %}" class="form auth__form" method="POST">
+      {% csrf_token %}
+      <!-- Input:Text -->
+      {% for field in form %}
+        <!-- Input:Text -->
+        <div class="form__field">
+          <label for="formInput#text">{{field.label}}</label>
+          {{field}}
+        </div>
+      {% endfor %}
+
+      <div class="auth__actions">
+        <input class="btn btn--sub btn--lg" type="submit" value="Sign  In" />
+      </div>
+    </form>
+    <div class="auth__alternative">
+      <p>Already have an Account?</p>
+      <a href="{% url 'login-page' %}">Log In</a>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+
+
+
+
+
+{% if page == 'login' %}
 <div class="auth">
     <div class="card">
       <div class="auth__header text-center">
@@ -44,9 +87,10 @@
       </form>
       <div class="auth__alternative">
         <p>Don’t have an Account?</p>
-        <a href="signup.html">Sign Up</a>
+        <a href="{% url 'register-page' %}">Sign Up</a>
       </div>
     </div>
   </div>
+{% endif %}
 
 {% endblock content %}
