@@ -55,6 +55,7 @@ def register_user(request):
             login(request, user)
             return redirect('profiles')
     else:
+        # pass
         messages.error(request, 'Tạo tài khoản thất bại!')
 
     return render(request, 'users/login_register.html', context=context)

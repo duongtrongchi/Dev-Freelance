@@ -5,7 +5,7 @@
 
 
 {% if page == 'register' %}
-<div class="auth">
+<div class="auth" class="register-page">
   <div class="card">
     <div class="auth__header text-center">
       <a href="{% url 'register-page' %}">
@@ -23,6 +23,15 @@
         <div class="form__field">
           <label for="formInput#text">{{field.label}}</label>
           {{field}}
+
+          {% if field.help_text %}
+            {{field.help_text}}
+          {% endif %}
+
+          {% for error in field.errors %}
+            <p style="color: red;">{{error}}</p>
+          {% endfor %}
+          
         </div>
       {% endfor %}
 
@@ -38,10 +47,6 @@
 </div>
 
 {% endif %}
-
-
-
-
 
 
 {% if page == 'login' %}
